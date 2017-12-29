@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
@@ -69,17 +70,93 @@ public class MainActivity extends AppCompatActivity implements HttpRequestListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        turingManager=new TuringManager(this,getString(R.string.turing_apikey),getString(R.string.turing_secret));
-        turingManager.setHttpRequestListener(this);
+        setContentView(R.layout.activity_main);
 
         spf=getSharedPreferences("Settings",MODE_PRIVATE);
-        setContentView(R.layout.activity_main);
         Glide.with(this).load(R.drawable.line).into((ImageView) findViewById(R.id.bg));
-
         initView();
         setListener();
 
+        /*getAccounts();
+        callPhone();
+        readPhoneState();
+        recordAudio();
+        readExternalStorage();
+        writeExternalStorage();*/
+
+
+        PermissionUtils.requestMultiPermissions(this,mPermissionGrant);
     }
+
+    public void initTuring(){
+        turingManager=new TuringManager(this,getString(R.string.turing_apikey),getString(R.string.turing_secret));
+        turingManager.setHttpRequestListener(this);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+    /**
+     * Called when the 'show camera' button is clicked.
+     * Callback is defined in resource layout definition.
+     */
+    public void showCamera() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_CAMERA, mPermissionGrant);
+    }
+
+    public void getAccounts() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_GET_ACCOUNTS, mPermissionGrant);
+    }
+
+    public void callPhone() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_CALL_PHONE, mPermissionGrant);
+    }
+
+    public void readPhoneState() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_READ_PHONE_STATE, mPermissionGrant);
+    }
+
+    public void accessFineLocation() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_ACCESS_FINE_LOCATION, mPermissionGrant);
+    }
+
+    public void accessCoarseLocation() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_ACCESS_COARSE_LOCATION, mPermissionGrant);
+    }
+
+    public void readExternalStorage() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_READ_EXTERNAL_STORAGE, mPermissionGrant);
+    }
+
+    public void writeExternalStorage() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_WRITE_EXTERNAL_STORAGE, mPermissionGrant);
+    }
+
+    public void recordAudio() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_RECORD_AUDIO, mPermissionGrant);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionUtils.requestPermissionsResult(this,requestCode,permissions,grantResults,mPermissionGrant);
+    }
+
+    private PermissionUtils.PermissionGrant mPermissionGrant = new PermissionUtils.PermissionGrant() {
+        @Override
+        public void onPermissionGranted(int requestCode) {
+            switch (requestCode) {
+                case PermissionUtils.CODE_MULTI_PERMISSION:
+                    initTuring();
+                    break;
+            }
+        }
+    };
+
 
     private void setListener() {
         recordBtn.setOnClickListener(new View.OnClickListener() {
