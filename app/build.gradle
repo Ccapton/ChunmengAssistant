@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.capton.chunmengassistant"
+        minSdkVersion 18
+        targetSdkVersion 26
+        versionCode 2
+        versionName "2.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets{
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    testCompile 'junit:junit:4.12'
+    compile files('libs/Msc.jar')
+    compile files('libs/Sunflower.jar')
+    compile 'com.alibaba:fastjson:1.2.33'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+    compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
+    compile 'com.zcw:togglebutton-library:1.0.0'
+    compile 'com.github.zcweng:switch-button:0.0.3@aar'
+    compile files('libs/Baidu-SpeechRecognitionUI-SDK-Android-1.6.2.jar')
+    compile files('libs/com.baidu.android.localasr_1.1.22.jar')
+    compile files('libs/com.baidu.speechsynthesizer_1.1.2.jar')
+    compile files('libs/galaxy.jar')
+    compile files('libs/turingSDK.jar')
+    compile files('libs/VoiceRecognition-1.6.2.jar')
+    compile files('libs/volley.jar')
+}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:background="@color/colorBg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.capton.chunmengassistant.MainActivity">
+    <ImageView
+       android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:text="点击录音"
+        android:id="@+id/hint"
+        android:textSize="8sp"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        android:layout_above="@+id/record"
+        android:layout_alignParentStart="true"
+         >
+        <LinearLayout
+            android:id="@+id/chatLayout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:src="@drawable/recording"
+        android:id="@+id/record"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/hint"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:src="@drawable/more_press"
+        android:id="@+id/more"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:src="@drawable/keybord_press"
+        android:id="@+id/openSearchBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true" />
+
+    <LinearLayout
+        android:id="@+id/searchBar"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_alignBottom="@+id/more"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/back_press"
+            android:layout_marginLeft="16dp"
+            android:id="@+id/back"
+            />
+
+        <EditText
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/searchbar_shape"
+            android:paddingLeft="16dp"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:layout_weight="1"
+            android:hint="输入你想说的话" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/send_press"
+            android:layout_marginRight="16dp"
+            android:id="@+id/send"
+              />
+    </LinearLayout>
+</RelativeLayout>

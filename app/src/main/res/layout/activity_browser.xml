@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_browser"
+    android:background="@color/colorBg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.capton.chunmengassistant.BrowserActivity">
+
+    <LinearLayout
+        android:id="@+id/editBar"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_height="50dp">
+        <EditText
+            android:text="httpUrl"
+            android:gravity="center"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:background="@android:color/white"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editUrl"
+            android:layout_weight="1"
+            android:inputType="text" />
+        <ImageView
+            android:id="@+id/goBtn"
+            android:src="@drawable/go_press"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/infoBar">
+        <ImageView
+            android:id="@+id/closeBtn"
+            android:src="@drawable/close_press"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:text="httpUrl"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:maxLength="30"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/infoTitle"
+            android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/refresh"
+            android:src="@drawable/refresh_press"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/editBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/touchLayout">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:id="@+id/loadProgressBar"
+            android:max="100" />
+
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/webView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
